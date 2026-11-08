@@ -392,7 +392,16 @@ a:hover {
 }
 
 .exp-org {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
   color: var(--muted);
+}
+
+.exp-emblem {
+  width: 2.4rem;
+  height: auto;
+  flex: none;
 }
 
 .exp-note {
@@ -751,6 +760,10 @@ cite {
 
   .exp-when {
     margin-bottom: 0.15rem;
+  }
+
+  .exp-emblem {
+    width: 2.15rem;
   }
 
   .interests li {
