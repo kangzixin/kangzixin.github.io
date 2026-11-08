@@ -1,3 +1,31 @@
+/* Newsreader and Source Sans 3, self-hosted under the SIL Open Font License. See assets/fonts/OFL.txt. */
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 480 640;
+  font-display: swap;
+  src: url("../assets/fonts/newsreader-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../assets/fonts/source-sans-3-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: italic;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../assets/fonts/source-sans-3-latin-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   color-scheme: light dark;
   --bg: #fff;
@@ -8,8 +36,9 @@
   --accent: oklch(0.43 0.08 162);
   --accent-strong: oklch(0.35 0.08 162);
   --wash: oklch(0.935 0.03 150);
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Noto Serif SC", "Songti SC", serif;
-  --sans: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --shadow: oklch(0.28 0.03 160 / 0.22);
+  --serif: Newsreader, Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --sans: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,6 +51,7 @@
     --accent: oklch(0.8 0.085 158);
     --accent-strong: oklch(0.88 0.07 158);
     --wash: oklch(0.29 0.035 160);
+    --shadow: oklch(0 0 0 / 0.45);
   }
 }
 
@@ -42,6 +72,7 @@ body {
   color: var(--ink);
   font-family: var(--sans);
   font-size: 1rem;
+  font-weight: 400;
   line-height: 1.7;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -70,6 +101,21 @@ a:hover {
   text-underline-offset: 0.18em;
 }
 
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.icon {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+  color: inherit;
+}
+
 .skip {
   position: absolute;
   left: 1rem;
@@ -85,16 +131,20 @@ a:hover {
 }
 
 .page {
-  max-width: 46rem;
+  max-width: 54rem;
   margin: 0 auto;
-  padding: 5.5rem 1.75rem 3.5rem;
+  padding: 5.25rem 1.75rem 3.5rem;
 }
 
 .intro {
   display: grid;
   grid-template-columns: 10.5rem minmax(0, 1fr);
-  gap: 1.6rem 1.85rem;
+  gap: 1.5rem 1.85rem;
   align-items: start;
+}
+
+.intro-copy {
+  min-width: 0;
 }
 
 .avatar {
@@ -102,54 +152,94 @@ a:hover {
   width: 10.5rem;
   height: 10.5rem;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, var(--accent) 28%, var(--line)),
+    0 14px 28px -18px var(--shadow);
 }
 
 .intro h1 {
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(2.3rem, 5.2vw, 2.9rem);
-  font-weight: 600;
-  line-height: 1.1;
+  font-optical-sizing: auto;
+  font-size: clamp(2.35rem, 4.6vw, 3rem);
+  font-weight: 560;
+  line-height: 1.08;
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .role {
-  margin: 0.6rem 0 0;
+  margin: 0.55rem 0 0;
   font-size: 1.06rem;
   color: var(--soft);
 }
 
 .affil {
-  margin: 0.85rem 0 0;
+  margin: 0.75rem 0 0;
   color: var(--muted);
-  font-size: 0.97rem;
-  line-height: 1.65;
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.affil-line {
+  display: block;
+  text-wrap: balance;
 }
 
 .contact {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 1.4rem;
-  margin: 1.3rem 0 0;
-  padding: 0;
+  align-items: center;
+  gap: 0.15rem 0.35rem;
+  margin: 1rem 0 0;
+  padding: 0.7rem 0 0;
+  border-top: 1px solid var(--line);
   list-style: none;
   font-weight: 500;
 }
 
+.contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.28rem 0.55rem;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.contact a:hover {
+  background: var(--wash);
+  text-decoration: none;
+}
+
+.contact a:hover .label {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+
+.contact .icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  color: var(--accent);
+}
+
 .block {
-  margin-top: 3.4rem;
+  margin-top: 3.15rem;
 }
 
 h2 {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin: 0 0 1.15rem;
+  margin: 0 0 1.1rem;
   color: var(--accent);
   font-family: var(--sans);
   font-size: 0.78rem;
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -163,9 +253,32 @@ h2::after {
 }
 
 .interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin: 0;
-  font-size: 1.06rem;
-  letter-spacing: 0.02em;
+  padding: 0;
+  list-style: none;
+}
+
+.interests li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.32rem 0.78rem 0.32rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--wash) 72%, transparent);
+  color: var(--ink);
+  font-size: 0.94rem;
+  line-height: 1.3;
+  letter-spacing: 0.005em;
+}
+
+.interests .icon {
+  width: 1.02rem;
+  height: 1.02rem;
+  color: var(--accent);
 }
 
 .pub-bar {
@@ -219,8 +332,8 @@ h2::after {
 
 .year-group {
   display: grid;
-  grid-template-columns: 4rem minmax(0, 1fr);
-  column-gap: 1.5rem;
+  grid-template-columns: 4.25rem minmax(0, 1fr);
+  column-gap: 1.65rem;
   border-top: 1px solid var(--line);
 }
 
@@ -232,8 +345,9 @@ h2::after {
   padding-top: 1.3rem;
   color: var(--muted);
   font-family: var(--serif);
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-optical-sizing: auto;
+  font-size: 1.08rem;
+  font-weight: 560;
   font-variant-numeric: lining-nums tabular-nums;
 }
 
@@ -241,21 +355,37 @@ h2::after {
   margin: 0;
   padding: 0;
   list-style: none;
+  min-width: 0;
 }
 
 .pub {
+  position: relative;
   padding: 1.2rem 0 1.25rem;
+  min-width: 0;
 }
 
 .pub + .pub {
   border-top: 1px dashed var(--line);
 }
 
+.pub[data-lead="true"]::before {
+  content: "";
+  position: absolute;
+  left: -0.85rem;
+  top: 1.35rem;
+  bottom: 1.25rem;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.55;
+}
+
 .pub-title {
   color: var(--ink);
-  font-size: 1.03rem;
+  font-size: 1.04rem;
   font-weight: 600;
   line-height: 1.45;
+  text-wrap: pretty;
 }
 
 .pub-title:hover {
@@ -271,7 +401,7 @@ h2::after {
 
 .me {
   color: var(--ink);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 sup {
@@ -283,11 +413,11 @@ sup {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.4rem 0.6rem;
-  margin: 0.45rem 0 0;
+  gap: 0.45rem 0.6rem;
+  margin: 0.5rem 0 0;
   color: var(--muted);
   font-size: 0.9rem;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 cite {
@@ -301,29 +431,39 @@ cite {
   background: var(--wash);
   color: var(--accent);
   font-size: 0.68rem;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
 .actions {
   display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
   gap: 0.4rem;
-  margin-left: auto;
 }
 
 .btn {
-  padding: 0.08rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  padding: 0.16rem 0.58rem 0.16rem 0.42rem;
   border: 1px solid var(--line);
   border-radius: 6px;
   font-size: 0.8rem;
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.35;
+  white-space: nowrap;
   transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
+.btn .icon {
+  width: 0.88rem;
+  height: 0.88rem;
+}
+
 .btn:hover {
-  border-color: var(--accent);
+  border-color: color-mix(in oklch, var(--accent) 50%, var(--line));
   background: var(--wash);
   text-decoration: none;
 }
@@ -351,21 +491,55 @@ cite {
 
 @media (max-width: 640px) {
   .page {
-    padding: 3rem 1.2rem 2.5rem;
+    padding: 2.75rem 1.15rem 2.5rem;
   }
 
   .intro {
-    grid-template-columns: 7.25rem minmax(0, 1fr);
-    gap: 1rem 1.1rem;
+    grid-template-columns: 6.6rem minmax(0, 1fr);
+    gap: 0.85rem 1rem;
   }
 
   .avatar {
-    width: 7.25rem;
-    height: 7.25rem;
+    width: 6.6rem;
+    height: 6.6rem;
+    border-radius: 12px;
+  }
+
+  .intro h1 {
+    font-size: 1.85rem;
+  }
+
+  .role {
+    margin-top: 0.35rem;
+    font-size: 0.98rem;
+  }
+
+  .affil {
+    margin-top: 0.5rem;
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  .contact {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.1rem;
+    margin-top: 0.75rem;
+    padding-top: 0.55rem;
+  }
+
+  .contact a {
+    padding: 0.28rem 0.2rem;
+    font-size: 0.86rem;
   }
 
   .block {
-    margin-top: 2.75rem;
+    margin-top: 2.6rem;
+  }
+
+  .interests li {
+    padding: 0.28rem 0.68rem 0.28rem 0.48rem;
+    font-size: 0.88rem;
   }
 
   .year-group {
@@ -374,19 +548,42 @@ cite {
 
   .year {
     position: static;
-    padding-top: 1.1rem;
+    padding-top: 1.05rem;
   }
 
   .pub {
-    padding-top: 0.7rem;
+    padding-top: 0.85rem;
   }
 
   .pub + .pub {
-    padding-top: 1.1rem;
+    padding-top: 1.05rem;
   }
 
-  .actions {
-    margin-left: 0;
+  .pub[data-lead="true"]::before {
+    left: -0.6rem;
+    top: 1rem;
+    bottom: 0.95rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .page {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .intro {
+    grid-template-columns: 5.6rem minmax(0, 1fr);
+    gap: 0.7rem 0.8rem;
+  }
+
+  .avatar {
+    width: 5.6rem;
+    height: 5.6rem;
+  }
+
+  .intro h1 {
+    font-size: 1.65rem;
   }
 }
 
@@ -410,6 +607,7 @@ cite {
     --line: #ccc;
     --accent: #000;
     --wash: transparent;
+    --shadow: transparent;
   }
 
   .skip,
@@ -421,6 +619,10 @@ cite {
   .page {
     max-width: none;
     padding: 0;
+  }
+
+  .avatar {
+    box-shadow: none;
   }
 
   .year {
