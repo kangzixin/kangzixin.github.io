@@ -38,4 +38,71 @@
       apply(button.dataset.filter);
     });
   });
+
+  apply(document.querySelector("[data-filter][aria-pressed='true']")?.dataset.filter || "all");
+})();
+
+(function () {
+  const nav = document.querySelector(".sidenav");
+  if (!nav) return;
+
+  const links = Array.prototype.slice.call(nav.querySelectorAll("a[href^='#']"));
+  const sections = links
+    .map(function (link) { return document.querySelector(link.getAttribute("href")); })
+    .filter(Boolean);
+  const current = document.getElementById("sidenav-now");
+  const toggle = nav.querySelector(".sidenav-toggle");
+  const compact = window.matchMedia("(max-width: 920px)");
+  let ticking = false;
+
+  function activeId() {
+    if (!sections.length) return "";
+    const bottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    if (bottom) return sections[sections.length - 1].id;
+    const line = Math.max(compact.matches ? 110 : 140, window.innerHeight * 0.33);
+    let id = sections[0].id;
+    sections.forEach(function (section) {
+      if (section.getBoundingClientRect().top <= line) id = section.id;
+    });
+    return id;
+  }
+
+  function mark() {
+    const id = activeId();
+    links.forEach(function (link) {
+      const on = link.getAttribute("href") === "#" + id;
+      if (on) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+      if (on && current) current.textContent = link.textContent.trim();
+    });
+    ticking = false;
+  }
+
+  function requestMark() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(mark);
+  }
+
+  function closeMenu() {
+    nav.classList.remove("is-open");
+    if (toggle) toggle.setAttribute("aria-expanded", "false");
+  }
+
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      const open = nav.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  }
+
+  links.forEach(function (link) {
+    link.addEventListener("click", function () {
+      if (compact.matches) closeMenu();
+    });
+  });
+
+  mark();
+  window.addEventListener("scroll", requestMark, { passive: true });
+  window.addEventListener("resize", requestMark);
 })();

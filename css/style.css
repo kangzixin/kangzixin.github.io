@@ -130,10 +130,125 @@ a:hover {
   transform: translateY(0.75rem);
 }
 
+.frame {
+  display: grid;
+  grid-template-columns: 8.75rem minmax(0, 54rem);
+  justify-content: center;
+  column-gap: 2.4rem;
+  align-items: start;
+  max-width: 69rem;
+  margin: 0 auto;
+  padding: 4.75rem 1.75rem 3.5rem;
+}
+
 .page {
   max-width: 54rem;
-  margin: 0 auto;
-  padding: 5.25rem 1.75rem 3.5rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.sidenav {
+  position: sticky;
+  top: 1.75rem;
+  min-width: 0;
+}
+
+.sidenav-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.72rem 1.15rem;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.sidenav-kicker {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.sidenav-now {
+  margin-left: auto;
+  color: var(--accent);
+}
+
+.chevron {
+  width: 0.9rem;
+  height: 0.9rem;
+  color: var(--accent);
+  transition: transform 0.15s ease;
+}
+
+.sidenav.is-open .chevron {
+  transform: rotate(180deg);
+}
+
+.sidenav ol {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0.1rem 1.15rem 0.75rem;
+}
+
+.sidenav.is-open ol {
+  display: block;
+}
+
+.sidenav a {
+  display: block;
+  padding: 0.4rem 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.sidenav a:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.sidenav a[aria-current="true"] {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+@media (min-width: 921px) {
+  .sidenav-toggle {
+    display: none;
+  }
+
+  .sidenav ol,
+  .sidenav.is-open ol {
+    display: block;
+    padding: 0.2rem 0 0;
+    border-left: 1px solid var(--line);
+  }
+
+  .sidenav a {
+    margin-left: -1px;
+    padding: 0.42rem 0 0.42rem 0.8rem;
+    border-left: 2px solid transparent;
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .sidenav a[aria-current="true"] {
+    border-left-color: var(--accent);
+  }
 }
 
 .intro {
@@ -229,6 +344,73 @@ a:hover {
 
 .block {
   margin-top: 3.15rem;
+  scroll-margin-top: 1.25rem;
+}
+
+.exp-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exp {
+  display: grid;
+  grid-template-columns: 8rem minmax(0, 1fr);
+  column-gap: 1.35rem;
+  padding: 1.15rem 0 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.exp-body {
+  min-width: 0;
+}
+
+.exp-when {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-size: 1.02rem;
+  font-weight: 560;
+  line-height: 1.35;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.exp-title {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.exp-org,
+.exp-note {
+  margin: 0.35rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.exp-org {
+  color: var(--muted);
+}
+
+.exp-note {
+  color: var(--soft);
+}
+
+.exp-nested {
+  margin-top: 0.9rem;
+  padding: 0.15rem 0 0.05rem 0.9rem;
+  border-left: 2px solid color-mix(in oklch, var(--accent) 42%, var(--line));
+}
+
+.exp-nested .exp-when {
+  font-size: 0.98rem;
+}
+
+.exp-nested .exp-note {
+  margin-top: 0.25rem;
 }
 
 h2 {
@@ -489,9 +671,35 @@ cite {
   margin: 0;
 }
 
+@media (max-width: 920px) {
+  .frame {
+    display: block;
+    max-width: none;
+    padding: 0 0 2.5rem;
+  }
+
+  .sidenav {
+    top: 0;
+    z-index: 5;
+    background: color-mix(in oklch, var(--bg) 90%, transparent);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(12px);
+  }
+
+  .page {
+    max-width: 54rem;
+    margin: 0 auto;
+    padding: 1.5rem 1.15rem 0;
+  }
+
+  .block {
+    scroll-margin-top: 3.5rem;
+  }
+}
+
 @media (max-width: 640px) {
   .page {
-    padding: 2.75rem 1.15rem 2.5rem;
+    padding: 1.35rem 1.15rem 0;
   }
 
   .intro {
@@ -537,6 +745,14 @@ cite {
     margin-top: 2.6rem;
   }
 
+  .exp {
+    display: block;
+  }
+
+  .exp-when {
+    margin-bottom: 0.15rem;
+  }
+
   .interests li {
     padding: 0.28rem 0.68rem 0.28rem 0.48rem;
     font-size: 0.88rem;
@@ -572,6 +788,12 @@ cite {
     padding-right: 1rem;
   }
 
+  .sidenav-toggle,
+  .sidenav ol {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .intro {
     grid-template-columns: 5.6rem minmax(0, 1fr);
     gap: 0.7rem 0.8rem;
@@ -593,7 +815,8 @@ cite {
   }
 
   .filters button,
-  .btn {
+  .btn,
+  .chevron {
     transition: none;
   }
 }
@@ -611,12 +834,15 @@ cite {
   }
 
   .skip,
+  .sidenav,
   .pub-bar,
   .actions {
     display: none;
   }
 
+  .frame,
   .page {
+    display: block;
     max-width: none;
     padding: 0;
   }

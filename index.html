@@ -26,6 +26,7 @@
       "name": "Huazhong University of Science and Technology"
     },
     "sameAs": [
+      "https://orcid.org/0009-0005-4993-7827",
       "https://scholar.google.com/citations?user=aIDjz6MAAAAJ&hl=en",
       "https://github.com/kangzixin"
     ]
@@ -88,8 +89,30 @@
         <path d="m8 6-6 6 6 6"/>
       </g>
     </symbol>
+    <symbol id="i-orcid" viewBox="0 0 256 256">
+      <path fill="#A6CE39" d="M256 128c0 70.7-57.3 128-128 128S0 198.7 0 128 57.3 0 128 0s128 57.3 128 128z"/>
+      <path fill="#fff" d="M86.3 186.2H70.9V79.1h15.4v107.1z"/>
+      <path fill="#fff" d="M108.9 79.1h41.6c39.6 0 57 28.3 57 53.6 0 27.5-21.5 53.6-56.8 53.6h-41.8V79.1zM124.3 172.4h24.5c34.9 0 42.9-26.5 42.9-39.7 0-21.5-13.7-39.7-43.7-39.7h-23.7V172.4z"/>
+      <path fill="#fff" d="M88.7 56.8c0 5.5-4.5 10.1-10.1 10.1-5.6 0-10.1-4.6-10.1-10.1 0-5.6 4.5-10.1 10.1-10.1 5.6 0 10.1 4.6 10.1 10.1z"/>
+    </symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24">
+      <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
   </svg>
   <a class="skip" href="#publications">Skip to publications</a>
+  <div class="frame">
+  <nav class="sidenav" aria-label="Sections">
+    <button type="button" class="sidenav-toggle" aria-expanded="false" aria-controls="section-nav">
+      <span class="sidenav-kicker">Sections</span>
+      <span class="sidenav-now" id="sidenav-now">Research</span>
+      <svg class="icon chevron" aria-hidden="true" focusable="false"><use href="#i-chevron"></use></svg>
+    </button>
+    <ol id="section-nav">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#publications">Publications</a></li>
+    </ol>
+  </nav>
   <main class="page">
     <header class="intro">
       <img class="avatar" src="assets/avatar.jpg" alt="Zixin Kang" width="168" height="168">
@@ -106,6 +129,7 @@
           <li><a href="mailto:29590kang@gmail.com"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-mail"></use></svg><span class="label">29590kang@gmail.com</span></a></li>
           <li><a href="https://scholar.google.com/citations?user=aIDjz6MAAAAJ&hl=en"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-scholar"></use></svg><span class="label">Google Scholar</span></a></li>
           <li><a href="https://github.com/kangzixin"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"></use></svg><span class="label">GitHub</span></a></li>
+          <li><a href="https://orcid.org/0009-0005-4993-7827"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-orcid"></use></svg><span class="label">ORCID</span></a></li>
         </ul>
       </div>
     </header>
@@ -119,6 +143,32 @@
       </ul>
     </section>
 
+    <section class="block" id="experience" aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Experience</h2>
+      <ol class="exp-list">
+        <li class="exp">
+          <p class="exp-when">2025–present</p>
+          <div class="exp-body">
+            <h3 class="exp-title">M.S. student in Bioinformatics</h3>
+            <p class="exp-org">Department of Bioinformatics and Systems Biology<br>College of Life Science and Technology<br>Huazhong University of Science and Technology</p>
+            <p class="exp-note">Research focus: computational biology at <a href="http://www.microbioinformatics.org/">Ning Lab</a>.</p>
+          </div>
+        </li>
+        <li class="exp">
+          <p class="exp-when">2021–2025</p>
+          <div class="exp-body">
+            <h3 class="exp-title">B.Eng. in Biomedical Engineering</h3>
+            <p class="exp-org">College of Life Science and Technology<br>Huazhong University of Science and Technology</p>
+            <p class="exp-note">Experimental Class of the Excellent Engineer Program in Biomedical Engineering (Shengzhuo Class).</p>
+            <div class="exp-nested">
+              <p class="exp-when">2023–2024</p>
+              <p class="exp-note">Undergraduate research developing microfluidic and signal-processing algorithms at <a href="https://www.x-mol.com/groups/liu_bifeng">Systems Biomedicine and Engineering Laboratory (Bi-Feng Liu Lab)</a>.</p>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
     <section class="block" id="publications" aria-labelledby="publications-heading">
       <h2 id="publications-heading">Publications</h2>
       <div class="pub-bar">
@@ -126,9 +176,8 @@
           <button type="button" data-filter="all" aria-pressed="true">All</button>
           <button type="button" data-filter="lead" aria-pressed="false">Lead author</button>
           <button type="button" data-filter="published" aria-pressed="false">Published</button>
-          <button type="button" data-filter="preprint" aria-pressed="false">Preprint</button>
         </div>
-        <p class="count" id="pub-count">7 papers</p>
+        <p class="count" id="pub-count">4 papers</p>
       </div>
 
       <div class="year-group">
@@ -166,33 +215,6 @@
               <span class="actions"><a class="btn" href="https://doi.org/10.1093/bib/bbaf631.027"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-paper"></use></svg>Paper</a></span>
             </p>
           </li>
-          <li class="pub" id="pub-segma" data-status="preprint" data-lead="true">
-            <a class="pub-title" href="https://doi.org/10.1101/2025.11.13.688364">AI-driven discovery and optimization of antimicrobial peptides from extreme environments on global scale</a>
-            <p class="authors"><strong class="me">Zixin Kang</strong><sup>*</sup>, …, Kang Ning</p>
-            <p class="meta">
-              <span class="venue"><cite>bioRxiv</cite> 2025.11.13.688364</span>
-              <span class="tag">Preprint</span>
-              <span class="actions"><a class="btn" href="https://doi.org/10.1101/2025.11.13.688364"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-paper"></use></svg>Paper</a></span>
-            </p>
-          </li>
-          <li class="pub" id="pub-bgc" data-status="preprint" data-lead="true">
-            <a class="pub-title" href="https://doi.org/10.1101/2025.04.29.651206">Uncovering Microbial Biosynthetic Potential with Genomic Context-aware Protein Language Model</a>
-            <p class="authors"><strong class="me">Zixin Kang</strong>, …, Kang Ning</p>
-            <p class="meta">
-              <span class="venue"><cite>bioRxiv</cite> 2025.04.29.651206</span>
-              <span class="tag">Preprint</span>
-              <span class="actions"><a class="btn" href="https://doi.org/10.1101/2025.04.29.651206"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-paper"></use></svg>Paper</a><a class="btn" href="https://github.com/HUST-NingKang-Lab/BGC-Finder"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-code"></use></svg>Code</a></span>
-            </p>
-          </li>
-          <li class="pub" id="pub-mgm2" data-status="preprint" data-lead="false">
-            <a class="pub-title" href="https://doi.org/10.1101/2025.01.15.633278">Towards a Generative Paradigm for Large-scale Microbiome Analysis by Generative Language Model</a>
-            <p class="authors">Haohong Zhang, <strong class="me">Zixin Kang</strong>, …, Kang Ning</p>
-            <p class="meta">
-              <span class="venue"><cite>bioRxiv</cite> 2025.01.15.633278</span>
-              <span class="tag">Preprint</span>
-              <span class="actions"><a class="btn" href="https://doi.org/10.1101/2025.01.15.633278"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-paper"></use></svg>Paper</a></span>
-            </p>
-          </li>
         </ol>
       </div>
 
@@ -218,6 +240,7 @@
       <p>Updated November 2026</p>
     </footer>
   </main>
+  </div>
   <script src="js/site.js"></script>
 </body>
 </html>
