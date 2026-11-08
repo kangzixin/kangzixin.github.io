@@ -518,9 +518,11 @@ h2::after {
 }
 
 .interests .icon {
-  width: 1.02rem;
-  height: 1.02rem;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex-shrink: 0;
   color: var(--accent);
+  opacity: 0.85;
 }
 
 .pub-bar {
