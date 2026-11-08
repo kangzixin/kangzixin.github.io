@@ -1,1 +1,1 @@
-# kangzixin.github.io
+Personal homepage for Zixin Kang, a master's student at Huazhong University of Science and Technology working on computational biology, metagenomics, and drug discovery. The live site is https://kangzixin.github.io.
